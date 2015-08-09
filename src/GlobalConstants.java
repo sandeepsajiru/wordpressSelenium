@@ -1,3 +1,4 @@
+import org.openqa.selenium.WebDriver;
 
 public class GlobalConstants {
 	
@@ -8,5 +9,8 @@ public class GlobalConstants {
 	public static final String PASSWORD = "sandeep";
 	public static final String THEME_UPLOAD_PAGE_URL = "http://127.0.0.1/wordpress/wp-admin/theme-install.php?upload";
 	public static final CharSequence THEME_ZIP_FILE_PATH = System.getProperty("user.dir")+"\\TestData\\Tessaract.zip";
+	
+	
+	public static WebDriver driver;
 	
 }
