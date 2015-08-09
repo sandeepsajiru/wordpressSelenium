@@ -51,7 +51,7 @@ public class ScenarioSetup {
 			action.click(GlobalConstants.driver.findElement(By.linkText("Log Out"))).build().perform();
 		}
 		
-		@Test
+		@Test(enabled=false)
 		public void createLoginDeleteUser()
 		{
 			//Navigate User page
@@ -85,7 +85,7 @@ public class ScenarioSetup {
 			GlobalConstants.driver.findElement(By.name("submit")).click();
 		}
 		
-		@Test
+		@Test(enabled=false)
 		public void ScreenDismiss()
 		{
 			loginAdmin("monika","monika");
@@ -105,7 +105,7 @@ public class ScenarioSetup {
 			 //GlobalConstants.driver.close();
 										
 		}
-		@Test
+		@Test(enabled=false)
 		public void AvatarChanges()
 		{
 			loginAdmin("monika","monika");
@@ -127,9 +127,10 @@ public class ScenarioSetup {
 			
 		}
 		
+		@Test
 		public void backgroundColor()
 		{
-			loginAdmin("monika","monika");
+			loginAdmin(GlobalConstants.USER_NAME, GlobalConstants.PASSWORD);
 			//Navigate Appearance Background
 			Actions action = new Actions(GlobalConstants.driver);
 			action.moveToElement(GlobalConstants.driver.findElement(By.id("menu-appearance"))).perform();
@@ -137,7 +138,11 @@ public class ScenarioSetup {
 			
 			//Change Background Color
 			WebElement element = GlobalConstants.driver.findElement(By.id("customize-theme-controls"));
-			element.findElement(By.id("accordion-section-colors")).click();
+			// TODO:  Fix the issue here.
+			
+			//element.findElement(By.id("accordion-section-colors")).click();
+			element.findElement(By.className("accordion-section-title")).click();
+			
 			GlobalConstants.driver.findElement(By.xpath(".//*[@id='customize-control-background_color']/label/div/div/a")).click();
 			//GlobalConstants.driver.findElement(By.className("color-picker-hex wp-color-picker")).sendKeys("#9b0000");
 			//GlobalConstants.driver.findElement(By.id("save")).click();
@@ -147,7 +152,9 @@ public class ScenarioSetup {
 			
 			
 		}
+		
 		//Using AutoIt
+		@Test(enabled=false)
 		public void uploadFile() throws IOException{
 			//Navigate to Upload Page
 			GlobalConstants.driver.navigate().to("http://localhost/wordpress/wp-admin/upload.php");
