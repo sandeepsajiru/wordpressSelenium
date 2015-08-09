@@ -14,8 +14,8 @@ public class UserTest {
 	FirefoxDriver driver = new FirefoxDriver();
 	driver.get("http://127.0.0.1/wordpress/wp-login");
 	
-	driver.findElement(By.id("user_login")).sendKeys("prakash");
-	driver.findElement(By.id("user_pass")).sendKeys("prakash");
+	driver.findElement(By.id("user_login")).sendKeys("sandeep");
+	driver.findElement(By.id("user_pass")).sendKeys("sandeep");
 	driver.findElement(By.id("wp-submit")).click();
 	
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -26,10 +26,12 @@ public class UserTest {
     act.moveToElement(driver.findElement(By.partialLinkText("Users"))).perform();
     act.click(driver.findElement(By.partialLinkText("Add New"))).perform();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    
+    String username = "abhinay"+System.currentTimeMillis();
 	
     //Fill form details and submit
-    driver.findElement(By.name("user_login")).sendKeys("abhinay");
-    driver.findElement(By.name("email")).sendKeys("postqanew@gmail.com");
+    driver.findElement(By.name("user_login")).sendKeys(username);
+    driver.findElement(By.name("email")).sendKeys("postqanew"+System.currentTimeMillis()+"@gmail.com");
     driver.findElement(By.name("first_name")).sendKeys("abhinay");
     driver.findElement(By.name("last_name")).sendKeys("kumar");
     driver.findElement(By.name("url")).sendKeys("https://smartbox.unifiedcloudit.com");
@@ -47,7 +49,7 @@ public class UserTest {
 	System.out.println("Before Deleting the User No of Rows :" + t1);
     
     //Search user
-    driver.findElement(By.name("s")).sendKeys("abhinay");
+    driver.findElement(By.name("s")).sendKeys(username);
     driver.findElement(By.id("search-submit")).click();
     driver.findElement(By.name("users[]")).click();
     
@@ -64,9 +66,11 @@ public class UserTest {
 //    dropdown2.selectByVisibleText("Delete");
 //    driver.findElement(By.id("doaction")).click();
     
-    driver.findElement(By.partialLinkText("abhinay"));
+   ;
     Actions act1 = new Actions(driver);
-    act1.moveToElement(driver.findElement(By.partialLinkText("Delete"))).perform();
+    act1.moveToElement( driver.findElement(By.partialLinkText(username))).perform();
+    //act1.moveToElement(driver.findElement(By.partialLinkText("Delete"))).perform();
+    driver.findElement(By.partialLinkText("Delete")).click();
     driver.findElement(By.id("delete_option0")).click();
     driver.findElement(By.id("submit")).click();
     
