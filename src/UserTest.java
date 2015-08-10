@@ -66,7 +66,7 @@ public class UserTest {
 //    dropdown2.selectByVisibleText("Delete");
 //    driver.findElement(By.id("doaction")).click();
     
-   ;
+  
     Actions act1 = new Actions(driver);
     act1.moveToElement( driver.findElement(By.partialLinkText(username))).perform();
     //act1.moveToElement(driver.findElement(By.partialLinkText("Delete"))).perform();
