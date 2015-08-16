@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.openqa.selenium.JavascriptExecutor;
+
 
 
 
@@ -113,13 +116,16 @@ public class ScenarioSetup {
 			Actions action = new Actions(GlobalConstants.driver);
 			action.moveToElement(GlobalConstants.driver.findElement(By.id("menu-settings"))).perform();
 			action.click(GlobalConstants.driver.findElement(By.linkText("Discussion"))).build().perform();
-			//Change Avatar
+			
+			// Change Avatar
 			GlobalConstants.driver.findElement(By.id("avatar_wavatar")).click();
-			//Save settings
+			
+			// Save settings
 			GlobalConstants.driver.findElement(By.id("submit")).click();
 			
 			// Save alert
 			WebElement text = GlobalConstants.driver.findElement(By.xpath(".//*[@id='setting-error-settings_updated']/p/strong"));
+			
 			/*if(text.getText().equalsIgnoreCase("Settings saved."))
 					System.out.println("Test Pass");
 			else
@@ -128,7 +134,7 @@ public class ScenarioSetup {
 		}
 		
 		@Test
-		public void backgroundColor()
+		public void backgroundColor() throws InterruptedException
 		{
 			loginAdmin(GlobalConstants.USER_NAME, GlobalConstants.PASSWORD);
 			//Navigate Appearance Background
@@ -138,10 +144,22 @@ public class ScenarioSetup {
 			
 			//Change Background Color
 			WebElement element = GlobalConstants.driver.findElement(By.id("customize-theme-controls"));
+			//System.out.println(element.getAttribute("outerHTML"));
 			// TODO:  Fix the issue here.
 			
-			//element.findElement(By.id("accordion-section-colors")).click();
-			element.findElement(By.className("accordion-section-title")).click();
+			WebElement colorSelection = element.findElement(By.id("accordion-section-colors"));
+			System.out.println(colorSelection.getAttribute("outerHTML"));
+			
+			((JavascriptExecutor) GlobalConstants.driver).executeScript("document.getElementById('accordion-section-colors').click()");
+			
+			Thread.sleep(10000);
+			action.moveToElement(colorSelection);
+			action.click(colorSelection);
+			Thread.sleep(10000);
+			colorSelection.click();
+			Thread.sleep(10000);
+			colorSelection.sendKeys(Keys.ENTER);
+			element.findElement(By.className("accordion-section-content")).click();
 			
 			GlobalConstants.driver.findElement(By.xpath(".//*[@id='customize-control-background_color']/label/div/div/a")).click();
 			//GlobalConstants.driver.findElement(By.className("color-picker-hex wp-color-picker")).sendKeys("#9b0000");

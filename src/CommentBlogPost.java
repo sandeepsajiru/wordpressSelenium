@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CommentBlogPost {
 
+	
 	public static void main(String[] args) 
 	{
 	FirefoxDriver driver = new FirefoxDriver();
