@@ -6,8 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Adduser {
 
 	public static void main(String[] args) {
-		WebDriver driver = new FirefoxDriver();
-		LoginPage lp = new LoginPage(driver);
+		LoginPage lp = new LoginPage();
 		
 		DashBoard dp =lp.loginPage("seltest", "seltest");
 		
