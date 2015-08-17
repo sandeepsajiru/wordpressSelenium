@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 
 public class GlobalConstants {
 	
+	public static String frameworkConfigPath = "framework.properties";
+	
 	public static String browser ="ff";
 	public static String loginPageUrl ="http://localhost/wordpress/wp-login.php";
 	public static final String LOGIN_PAGE_URL = "http://127.0.0.1/wordpress/wp-admin";
